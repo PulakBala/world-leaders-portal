@@ -11,10 +11,18 @@ const displayCategories = (headLine) =>{
     headLine.forEach(element => {
         const newDiv = document.createElement('div');
         newDiv.innerHTML = `
-        <a> ${element.category_name} </a>
+        <a onclick="loadNewsDetails('${element.category_id}')"> ${element.category_name} </a>
+    
         `;
         headLineContainer.appendChild(newDiv);
     });
+}
+
+const loadNewsDetails = async id =>{
+    const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data)
 }
 
 
