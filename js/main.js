@@ -92,6 +92,19 @@ const displayNewsDetails = news => {
         newsDiv.innerHTML = `
             <h4>${news[0].title}</h4>      
             <img src=" ${news[0].image_url} " class="img-fluid rounded-start" alt="..." >
+            <p class="card-text fs-5"> ${news[0].details.slice(0, 340)} </p>
+            <div class= "d-flex">
+                <div class="pt-4">
+                    <img src= " ${news[0].author.img} " style="width:80px; height:80px; border-radius:50%" >
+                </div>
+                <div class="pt-4">
+                  <p class="card-text fs-6"> ${news[0].author.name} </p>
+                  <p class="card-text"> ${news[0].author.published_date} </p>
+                </div>
+                <div class="pt-5">
+                  <p class =" px-4 mx-4"> <i class="fa-solid fa-eye"> ${news[0].total_view} M </i> </p>
+                </div>
+            </div>
         `;
         
         showcontainer.appendChild(newsDiv);
