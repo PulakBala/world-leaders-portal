@@ -1,15 +1,19 @@
 const loadCategories = async () => {
-    const url = `https://openapi.programming-hero.com/api/news/categories`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayCategories(data.data.news_category);
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/categories`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCategories(data.data.news_category);
+    } catch (error) {
+        console.log(error + 'correction this line');
+    }
 }
 
 const displayCategories = (headLine) => {
 
     const headLineContainer = document.getElementById('headline-container');
     headLine.forEach(element => {
-        const newDiv = document.createElement('div');
+        let newDiv = document.createElement('div');
         newDiv.innerHTML = `
         <a onclick="loadNews('${element.category_id}')"> ${element.category_name} </a>
     
@@ -19,10 +23,14 @@ const displayCategories = (headLine) => {
 }
 
 const loadNews = async (id) => {
-    const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsCategories(data.data)
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsCategories(data.data)
+    } catch (error) {
+        console.log(error + ' correction this line')
+    }
 }
 
 const displayNewsCategories = (details) => {
@@ -37,7 +45,7 @@ const displayNewsCategories = (details) => {
     // console.log(details);
     
     details.forEach(element => {
-        const newDiv = document.createElement('div');
+        let newDiv = document.createElement('div');
         newDiv.innerHTML = `
         <div class="card mb-3">
             <div class="row g-0">
@@ -76,19 +84,23 @@ const displayNewsCategories = (details) => {
 
 // news details modal 
 const loadShowDetails = async id => {
-    const url = `https://openapi.programming-hero.com/api/news/${id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    console.log(data.data);
-    displayNewsDetails(data.data);
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/${id}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsDetails(data.data);
+    }
+    catch(err) {
+        console.log(err + ' correction this line')
+    }    
 }
 
 const displayNewsDetails = news => {
-    console.log(Array.isArray(news));
+    
     const showcontainer = document.getElementById('news-details');
     showcontainer.innerHTML = ' ';
        let newsDiv = document.createElement('div');
-        console.log(news);
+        
         newsDiv.innerHTML = `
             <h4>${news[0].title}</h4>      
             <img src=" ${news[0].image_url} " class="img-fluid rounded-start" alt="..." >
