@@ -33,22 +33,40 @@
           </div>
         </section>
         <!-- news catagories item  -->
-        <section>
-          <div id="category-items" class="card">
-            <div class="card-body" id="cata-id">
+        <section class="pb-4">
+          <div  class="card">
+            <div class="card-body fs-4 text-center" id="cata-id">
               
             </div> 
           </div>
         </section>
     </header>
     <main class="container">
+      <!-- show all news  -->
        <section class="bg-light">
-        
             <div id="show-news">
               
-            </div>
-        
+            </div>   
        </section>
+       
+       
+       <!-- modal  -->
+       <section>
+        <div class="modal fade" id="newsDetailModal" tabindex="-1" aria-labelledby="newsDetailModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">                 
+                      <h5 class="modal-title" id="newsDetailModalLabel"></h5>                
+                  <div id="news-details" class="modal-body">
+                      
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+       </section>
+       
     </main>
 
     <footer>
