@@ -5,21 +5,23 @@ const loadCategories = async () => {
         const data = await res.json();
         displayCategories(data.data.news_category);
     } catch (error) {
-        console.log(error + 'correction this line');
+        console.log(error + ' correction this line');
     }
+    
 }
-
 const displayCategories = (headLine) => {
-
     const headLineContainer = document.getElementById('headline-container');
     headLine.forEach(element => {
         let newDiv = document.createElement('div');
         newDiv.innerHTML = `
-        <a onclick="loadNews('${element.category_id}')"> ${element.category_name} </a>
+        
+        <a onclick="loadNews('${element.category_id}'), toggleSpinner(true); "> ${element.category_name} </a>
     
         `;
         headLineContainer.appendChild(newDiv);
     });
+    // start spinner loader 
+    
 }
 
 const loadNews = async (id) => {
@@ -31,6 +33,7 @@ const loadNews = async (id) => {
     } catch (error) {
         console.log(error + ' correction this line')
     }
+   
 }
 
 const displayNewsCategories = (details) => {
@@ -41,8 +44,6 @@ const displayNewsCategories = (details) => {
     } else {
         document.getElementById('cata-id').innerHTML = details.length + ' Items found for Cetegory';
     }
-
-    // console.log(details);
     
     details.forEach(element => {
         let newDiv = document.createElement('div');
@@ -79,8 +80,22 @@ const displayNewsCategories = (details) => {
         `;
         showNews.appendChild(newDiv);
     });
-
+    //stop loader
+    toggleSpinner(false);
 }
+
+// spinner loader 
+const toggleSpinner = isLoading =>{
+    
+    const loaderSection = document.getElementById('loader');
+    if(isLoading) {
+        loaderSection.classList.remove('d-none');
+    } else{
+        loaderSection.classList.add('d-none');
+    }
+}
+
+
 
 // news details modal 
 const loadShowDetails = async id => {
@@ -88,14 +103,14 @@ const loadShowDetails = async id => {
         const url = `https://openapi.programming-hero.com/api/news/${id}`;
         const res = await fetch(url);
         const data = await res.json();
-        displayNewsDetails(data.data);
+        newsModalShow(data.data);
     }
     catch(err) {
         console.log(err + ' correction this line')
     }    
 }
 
-const displayNewsDetails = news => {
+const newsModalShow = news => {
     
     const showcontainer = document.getElementById('news-details');
     showcontainer.innerHTML = ' ';
