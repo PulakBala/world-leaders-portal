@@ -18,16 +18,24 @@ const displayCategories = (headLine) =>{
     });
 }
 
-const loadNews = async id =>{
+const loadNews = async (id )=>{
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNewsCategories(data.data)
 }
 
-const displayNewsCategories = details =>{
+const displayNewsCategories = (details) =>{
     const showNews = document.getElementById('show-news');
-    console.log(details)
+    showNews.innerHTML = ` `;
+    if(details.length === 0) {
+        document.getElementById('cata-id').innerHTML = 'NO ITEM HERE'
+    } else{
+        document.getElementById('cata-id').innerHTML = 'Catageory Items '+  details.length;
+    }
+   
+
+   
     details.forEach(element=>{
         const newDiv =document.createElement('div');
         newDiv.innerHTML = `
@@ -62,6 +70,7 @@ const displayNewsCategories = details =>{
     })
     
 }
+
 
 
 loadCategories();
