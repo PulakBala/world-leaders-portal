@@ -14,16 +14,14 @@ const displayCategories = (headLine) => {
     headLine.forEach(element => {
         let newDiv = document.createElement('div');
         newDiv.innerHTML = `
-        
+
         <a onclick="loadNews('${element.category_id}'), toggleSpinner(true); "> ${element.category_name} </a>
     
         `;
         headLineContainer.appendChild(newDiv);
     });
-    // start spinner loader 
     
 }
-
 const loadNews = async (id) => {
     try {
         const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
@@ -36,15 +34,26 @@ const loadNews = async (id) => {
    
 }
 
-const displayNewsCategories = (details) => {
+let displayNewsCategories = (details) => {
     const showNews = document.getElementById('show-news');
     showNews.innerHTML = ` `;
+    //items found for cetegory
     if (details.length === 0) {
         document.getElementById('cata-id').innerHTML = 'NO ITEM HERE'
     } else {
         document.getElementById('cata-id').innerHTML = details.length + ' Items found for Cetegory';
     }
-    
+
+    //sort view
+    details.sort((a, b)=>{
+        const sortContainer = document.getElementById('sort-container');
+         const fff =(b.total_view - a.total_view)
+         sortContainer.innerText = fff;
+         
+        });
+     
+ 
+    //news main section show
     details.forEach(element => {
         let newDiv = document.createElement('div');
         newDiv.innerHTML = `
@@ -79,6 +88,7 @@ const displayNewsCategories = (details) => {
         </div>
         `;
         showNews.appendChild(newDiv);
+                
     });
     //stop loader
     toggleSpinner(false);
@@ -94,8 +104,6 @@ const toggleSpinner = isLoading =>{
         loaderSection.classList.add('d-none');
     }
 }
-
-
 
 // news details modal 
 const loadShowDetails = async id => {

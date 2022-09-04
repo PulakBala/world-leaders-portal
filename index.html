@@ -26,12 +26,13 @@
     
     <header class="container">
       <!-- news catagories  -->
-        <section>
-          <div id="headline-container" class="col-md-8 col-lg-12 col-4 d-flex justify-content-between fs-5 py-4 ">
+        <section>  
+              <div id="headline-container" class=" d-flex justify-content-between fs-5 py-4 ">
            
 
-          </div>
+              </div>
         </section>
+
         <!-- spinner loadder  -->
         <section id="loader" class="d-none">
           <div class="d-flex justify-content-center align-items-center " style="height: 300px;">
@@ -51,6 +52,18 @@
         </section>
     </header>
     <main class="container">
+      <!-- view sort  -->
+      <section class="d-flex bg-light justify-content-around">
+        <div>
+          <p class="fs-5">Sort By View : <span id="sort-container" >   </span> </p>
+          
+        </div>
+        <div>
+          <button class="btn btn-primary">ToDay's Pick</button>
+          <button class="btn btn-info">Trending</button>
+        </div>
+        
+      </section>
       <!-- show all news  -->
        <section class="bg-light">
             <div id="show-news">
